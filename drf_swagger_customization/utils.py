@@ -24,9 +24,7 @@ def get_item_from_path(path, json):
 def add_documentation(operation, swagger_doc):
     for key, value in operation.items():
         path_elements = key.split("|")
-
-        last_element = path_elements[-1]
-        del path_elements[-1]
+        last_element = path_elements.pop()
 
         path = get_item_from_path(path_elements, swagger_doc)
 
@@ -44,9 +42,7 @@ def add_documentation(operation, swagger_doc):
 def update_documentation(operation, swagger_doc):
     for key, value in operation.items():
         path_elements = key.split("|")
-
-        last_element = path_elements[-1]
-        del path_elements[-1]
+        last_element = path_elements.pop()
 
         path = get_item_from_path(path_elements, swagger_doc)
 
@@ -63,9 +59,7 @@ def update_documentation(operation, swagger_doc):
 def remove_documentation(operation, swagger_doc):
     for key in operation:
         path_elements = key.split("|")
-
-        last_element = path_elements[-1]
-        del path_elements[-1]
+        last_element = path_elements.pop()
 
         path = get_item_from_path(path_elements, swagger_doc)
         if '=' in last_element:
