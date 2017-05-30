@@ -27,6 +27,9 @@ Add drf-swagger-customization's URL patterns:
         ...
     ]
 
+Building the JSON File
+----------------------
+
 In order to add/update/remove information to our EXTENSION_PATH json file,  we have available these operations:
 
 Create:
@@ -82,7 +85,7 @@ Remove:
     }
 
 Completed Sample
---------
+----------------
 
 .. code-block:: javascript
 
