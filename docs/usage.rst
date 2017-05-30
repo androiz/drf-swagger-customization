@@ -2,25 +2,119 @@
 Usage
 =====
 
-To use drf-swagger-customization in a project, add it to your `INSTALLED_APPS`:
+With this package we can increase the auto-generated documentation from django-swagger. That way, we can add documentation
+from external APIs or add more information to our drf API methods such as fields, remove endpoints, update attributes, and so on.
+
+Add these global variables to your settings.py:
 
 .. code-block:: python
 
-    INSTALLED_APPS = (
-        ...
-        'drf_swagger_customization.apps.DrfSwaggerCustomizationConfig',
-        ...
-    )
+    EXTENSION_PATH = os.path.join(PROJECT_DIR, 'docs/doc_extension.json') # Path to your extension file
+    EXTERNAL_DOC_FOLDER = os.path.join(PROJECT_DIR, 'docs/external/') # Path to your external documentation folder
+
 
 Add drf-swagger-customization's URL patterns:
 
 .. code-block:: python
 
-    from drf_swagger_customization import urls as drf_swagger_customization_urls
+    from drf_swagger_customization.views import get_swagger_view
 
+    schema_view = get_swagger_view(title='Pastebin API')
 
     urlpatterns = [
         ...
-        url(r'^', include(drf_swagger_customization_urls)),
+        url(r'^docs/$', schema_view),
         ...
     ]
+
+In order to add/update/remove information to our EXTENSION_PATH json file,  we have available these operations:
+
+Create:
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: json
+{
+    "operation": "create",
+    "swagger-data": {
+        "paths|/v1/travels/|get|parameters": [
+            {
+              "name": "Field1",
+              "in": "query",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "Field2",
+              "in": "path",
+              "required": true,
+              "type": "integer"
+            }
+        ]
+    }
+}
+
+Update:
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: json
+{
+    "operation": "update",
+    "swagger-data": {
+        "paths|/v1/travels/|get|parameters|field1": {
+            "name": "Field1",
+            "in": "query",
+            "required": true,
+            "type": "string"
+        }
+    }
+}
+
+Remove:
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: json
+{
+    "operation": "delete",
+    "swagger-data": "paths|/v1/travels/|get|parameters|field1"
+}
+
+Completed Sample
+--------
+
+.. code-block:: json
+[
+  {
+    "operation": "create",
+    "swagger-data": {
+      "paths|/v1/travels/|get|parameters": [
+        {
+          "name": "Field1",
+          "in": "query",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "Field2",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    }
+  },
+  {
+    "operation": "update",
+    "swagger-data": {
+      "paths|/v1/travels/|get|parameters|field1": {
+        "name": "Field1",
+        "in": "query",
+        "required": true,
+        "type": "string"
+      }
+    }
+  },
+  {
+    "operation": "delete",
+    "swagger-data": "paths|/v1/travels/|get|parameters|field1"
+  }
+]

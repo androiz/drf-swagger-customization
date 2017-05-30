@@ -56,7 +56,10 @@ setup(
         'drf_swagger_customization',
     ],
     include_package_data=True,
-    install_requires=[],
+    install_requires=[
+        "djangorestframework>=3.6.3",
+        "django-rest-swagger>=2.0.5"
+    ],
     license="MIT",
     zip_safe=False,
     keywords='drf-swagger-customization',

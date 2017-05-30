@@ -25,15 +25,6 @@ Install drf-swagger-customization::
 
     pip install drf-swagger-customization
 
-Add it to your `INSTALLED_APPS`:
-
-.. code-block:: python
-
-    INSTALLED_APPS = (
-        ...
-        'DrfSwaggerCustomizationConfig',
-        ...
-    )
 
 Add these global variables to your settings.py:
 
@@ -57,18 +48,106 @@ Add drf-swagger-customization's URL patterns:
         ...
     ]
 
-Features
+Usage
+--------
+With this package we can increase the auto-generated documentation from django-swagger. That way, we can add documentation
+from external APIs or add more information to our drf API methods such as fields, remove endpoints, update attributes, and so on.
+
+In order to add/update/remove information to our EXTENSION_PATH json file,  we have available these operations:
+
+Create:
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: json
+{
+    "operation": "create",
+    "swagger-data": {
+        "paths|/v1/travels/|get|parameters": [
+            {
+              "name": "Field1",
+              "in": "query",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "Field2",
+              "in": "path",
+              "required": true,
+              "type": "integer"
+            }
+        ]
+    }
+}
+
+Update:
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: json
+{
+    "operation": "update",
+    "swagger-data": {
+        "paths|/v1/travels/|get|parameters|field1": {
+            "name": "Field1",
+            "in": "query",
+            "required": true,
+            "type": "string"
+        }
+    }
+}
+
+Remove:
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: json
+{
+    "operation": "delete",
+    "swagger-data": "paths|/v1/travels/|get|parameters|field1"
+}
+
+Completed Sample
 --------
 
-* TODO
+.. code-block:: json
+[
+  {
+    "operation": "create",
+    "swagger-data": {
+      "paths|/v1/travels/|get|parameters": [
+        {
+          "name": "Field1",
+          "in": "query",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "Field2",
+          "in": "path",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    }
+  },
+  {
+    "operation": "update",
+    "swagger-data": {
+      "paths|/v1/travels/|get|parameters|field1": {
+        "name": "Field1",
+        "in": "query",
+        "required": true,
+        "type": "string"
+      }
+    }
+  },
+  {
+    "operation": "delete",
+    "swagger-data": "paths|/v1/travels/|get|parameters|field1"
+  }
+]
 
-Credits
--------
+Future Work
+--------
 
-Tools used in rendering this package:
-
-*  Cookiecutter_
-*  `cookiecutter-djangopackage`_
-
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`cookiecutter-djangopackage`: https://github.com/pydanny/cookiecutter-djangopackage
+* Add an example
+* Command for doc_file customization, in order to remove redundant executions.
+* Improve the settings options.
