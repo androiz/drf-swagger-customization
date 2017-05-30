@@ -58,7 +58,7 @@ In order to add/update/remove information to our EXTENSION_PATH json file,  we h
 Create:
 ~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: json
+```json
 {
     "operation": "create",
     "swagger-data": {
@@ -78,11 +78,12 @@ Create:
         ]
     }
 }
+```
 
 Update:
 ~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: json
+```json
 {
     "operation": "update",
     "swagger-data": {
@@ -94,20 +95,22 @@ Update:
         }
     }
 }
+```
 
 Remove:
 ~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: json
+```json
 {
     "operation": "delete",
     "swagger-data": "paths|/v1/travels/|get|parameters|field1"
 }
+```
 
 Completed Sample
 --------
 
-.. code-block:: json
+```json
 [
   {
     "operation": "create",
@@ -144,6 +147,7 @@ Completed Sample
     "swagger-data": "paths|/v1/travels/|get|parameters|field1"
   }
 ]
+```
 
 Future Work
 --------
