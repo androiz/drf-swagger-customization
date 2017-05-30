@@ -32,11 +32,65 @@ In order to add/update/remove information to our EXTENSION_PATH json file,  we h
 Create:
 ~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: json
-{
-    "operation": "create",
-    "swagger-data": {
-        "paths|/v1/travels/|get|parameters": [
+.. code-block:: javascript
+
+    {
+        "operation": "create",
+        "swagger-data": {
+            "paths|/v1/travels/|get|parameters": [
+                {
+                  "name": "Field1",
+                  "in": "query",
+                  "required": true,
+                  "type": "string"
+                },
+                {
+                  "name": "Field2",
+                  "in": "path",
+                  "required": true,
+                  "type": "integer"
+                }
+            ]
+        }
+    }
+
+Update:
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: javascript
+
+    {
+        "operation": "update",
+        "swagger-data": {
+            "paths|/v1/travels/|get|parameters|field1": {
+                "name": "Field1",
+                "in": "query",
+                "required": true,
+                "type": "string"
+            }
+        }
+    }
+
+Remove:
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: javascript
+
+    {
+        "operation": "delete",
+        "swagger-data": "paths|/v1/travels/|get|parameters|field1"
+    }
+
+Completed Sample
+--------
+
+.. code-block:: javascript
+
+    [
+      {
+        "operation": "create",
+        "swagger-data": {
+          "paths|/v1/travels/|get|parameters": [
             {
               "name": "Field1",
               "in": "query",
@@ -49,72 +103,22 @@ Create:
               "required": true,
               "type": "integer"
             }
-        ]
-    }
-}
-
-Update:
-~~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: json
-{
-    "operation": "update",
-    "swagger-data": {
-        "paths|/v1/travels/|get|parameters|field1": {
+          ]
+        }
+      },
+      {
+        "operation": "update",
+        "swagger-data": {
+          "paths|/v1/travels/|get|parameters|field1": {
             "name": "Field1",
             "in": "query",
             "required": true,
             "type": "string"
+          }
         }
-    }
-}
-
-Remove:
-~~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: json
-{
-    "operation": "delete",
-    "swagger-data": "paths|/v1/travels/|get|parameters|field1"
-}
-
-Completed Sample
---------
-
-.. code-block:: json
-[
-  {
-    "operation": "create",
-    "swagger-data": {
-      "paths|/v1/travels/|get|parameters": [
-        {
-          "name": "Field1",
-          "in": "query",
-          "required": true,
-          "type": "string"
-        },
-        {
-          "name": "Field2",
-          "in": "path",
-          "required": true,
-          "type": "integer"
-        }
-      ]
-    }
-  },
-  {
-    "operation": "update",
-    "swagger-data": {
-      "paths|/v1/travels/|get|parameters|field1": {
-        "name": "Field1",
-        "in": "query",
-        "required": true,
-        "type": "string"
+      },
+      {
+        "operation": "delete",
+        "swagger-data": "paths|/v1/travels/|get|parameters|field1"
       }
-    }
-  },
-  {
-    "operation": "delete",
-    "swagger-data": "paths|/v1/travels/|get|parameters|field1"
-  }
-]
+    ]
