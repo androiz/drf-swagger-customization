@@ -3,6 +3,11 @@
 History
 -------
 
+0.1.2 (2017-05-30)
+++++++++++++++++++
+
+* Improved documentation in order to explain how to build the json file
+
 0.1.1 (2017-05-25)
 ++++++++++++++++++
 
