@@ -72,6 +72,15 @@ def remove_documentation(operation, swagger_doc):
             del path[last_element]
 
 
+def rename_documentation(operation, swagger_doc):
+    for key, value in operation.items():
+        path_elements = key.split("|")
+        last_element = path_elements.pop()
+
+        path = get_item_from_path(path_elements, swagger_doc)
+        path[value] = path.pop(last_element)
+
+
 def execute_action(data, swagger_doc):
     if data['action'] == 'create':
         add_documentation(data['operation'], swagger_doc)
@@ -79,6 +88,8 @@ def execute_action(data, swagger_doc):
         update_documentation(data['operation'], swagger_doc)
     elif data['action'] == 'delete':
         remove_documentation(data['operation'], swagger_doc)
+    elif data['action'] == 'rename':
+        rename_documentation(data['operation'], swagger_doc)
     else:
         raise Exception
 

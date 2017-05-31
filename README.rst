@@ -50,9 +50,9 @@ Usage
 With this package we can increase the auto-generated documentation from django-swagger. That way, we can add documentation
 from external APIs or add more information to our drf API methods such as fields, remove endpoints, update attributes, and so on.
 
-In order to add/update/remove information to our EXTENSION_PATH json file,  we have available these operations:
+In order to add information to our EXTENSION_PATH json file,  we have available these operations:
 
-Create:
+Create
 ~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: javascript
@@ -77,7 +77,7 @@ Create:
         }
     }
 
-Update:
+Update
 ~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: javascript
@@ -95,7 +95,7 @@ Update:
     }
 
 
-Remove:
+Remove
 ~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: javascript
@@ -103,6 +103,19 @@ Remove:
     {
         "operation": "delete",
         "swagger-data": "paths|/v1/travels/|get|parameters|field1"
+    }
+
+Rename
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: javascript
+
+    {
+        "action": "rename",
+        "operation": {
+            "paths|/v1/travels/": "/travels/",
+            "paths|/v1/travels/{id}/": "/travels/{id}/"
+        }
     }
 
 
@@ -145,6 +158,13 @@ Completed Sample
       {
         "operation": "delete",
         "swagger-data": "paths|/v1/travels/|get|parameters|field1"
+      },
+      {
+        "action": "rename",
+        "operation": {
+            "paths|/v1/travels/": "/travels/",
+            "paths|/v1/travels/{id}/": "/travels/{id}/"
+        }
       }
     ]
 

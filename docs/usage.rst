@@ -30,7 +30,7 @@ Add drf-swagger-customization's URL patterns:
 Building the JSON File
 ----------------------
 
-In order to add/update/remove information to our EXTENSION_PATH json file,  we have available these operations:
+In order to add information to our EXTENSION_PATH json file,  we have available these operations:
 
 Create:
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -84,6 +84,19 @@ Remove:
         "swagger-data": "paths|/v1/travels/|get|parameters|field1"
     }
 
+Rename
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: javascript
+
+    {
+        "action": "rename",
+        "operation": {
+            "paths|/v1/travels/": "/travels/",
+            "paths|/v1/travels/{id}/": "/travels/{id}/"
+        }
+    }
+
 Completed Sample
 ----------------
 
@@ -123,5 +136,12 @@ Completed Sample
       {
         "operation": "delete",
         "swagger-data": "paths|/v1/travels/|get|parameters|field1"
+      },
+      {
+        "action": "rename",
+        "operation": {
+            "paths|/v1/travels/": "/travels/",
+            "paths|/v1/travels/{id}/": "/travels/{id}/"
+        }
       }
     ]
