@@ -80,8 +80,8 @@ Remove:
 .. code-block:: javascript
 
     {
-        "operation": "delete",
-        "swagger-data": "paths|/v1/travels/|get|parameters|field1"
+        "action": "delete",
+        "operation": "paths|/v1/travels/|get|parameters|field1"
     }
 
 Rename
@@ -104,8 +104,8 @@ Completed Sample
 
     [
       {
-        "operation": "create",
-        "swagger-data": {
+        "action": "create",
+        "operation": {
           "paths|/v1/travels/|get|parameters": [
             {
               "name": "Field1",
@@ -123,8 +123,8 @@ Completed Sample
         }
       },
       {
-        "operation": "update",
-        "swagger-data": {
+        "action": "update",
+        "operation": {
           "paths|/v1/travels/|get|parameters|field1": {
             "name": "Field1",
             "in": "query",
@@ -134,8 +134,8 @@ Completed Sample
         }
       },
       {
-        "operation": "delete",
-        "swagger-data": "paths|/v1/travels/|get|parameters|field1"
+        "action": "delete",
+        "operation": "paths|/v1/travels/|get|parameters|field1"
       },
       {
         "action": "rename",
